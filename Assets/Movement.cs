@@ -13,13 +13,13 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		float hValue = Input.GetAxis ("Horizontal");
-		rigidbody2D.velocity = new Vector2 (hValue * playerSpeed, rigidbody2D.velocity.y);
-
-		if (Input.GetButtonDown ("Jump")) {
-			rigidbody2D.AddForce (new Vector2(0, jumpForce));
-				}
-
 	
+		float hValue = Input.GetAxis ("Horizontal");
+
+		rigidbody2D.velocity = new Vector2 (hValue * playerSpeed, rigidbody2D.velocity.y); 
+
+		if (Input.GetButtonDown ("Jump"))
+
+						rigidbody2D.AddForce (new Vector2 (0, jumpForce));
 	}
 }
