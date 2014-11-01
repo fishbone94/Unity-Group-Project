@@ -38,6 +38,7 @@ public class Movement : MonoBehaviour {
 
 		rigidbody2D.velocity = new Vector2 (hValue * playerSpeed, rigidbody2D.velocity.y); 
 
+<<<<<<< HEAD
 		if(jump){
 			// Add a vertical force to the player.
 			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
@@ -45,5 +46,9 @@ public class Movement : MonoBehaviour {
 			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
 			jump = false;
 		}
+=======
+		if (Input.GetButtonDown ("Jump"))
+						rigidbody2D.AddForce (new Vector2 (0, jumpForce));
+>>>>>>> ddb27e028e8e5f1e1ac1d1169f7de056168bde83
 	}
 }
