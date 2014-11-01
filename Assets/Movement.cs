@@ -19,7 +19,6 @@ public class Movement : MonoBehaviour {
 		rigidbody2D.velocity = new Vector2 (hValue * playerSpeed, rigidbody2D.velocity.y); 
 
 		if (Input.GetButtonDown ("Jump"))
-
 						rigidbody2D.AddForce (new Vector2 (0, jumpForce));
 	}
 }
