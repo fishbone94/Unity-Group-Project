@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraFollow : MonoBehaviour {
 
 
-	public float dampTime = 0.05f;
+	public float dampTime = 0.005f;
 	private Vector3 velocity = Vector3.zero;
 	public Transform target;
 
