@@ -28,12 +28,10 @@ public class Movement : MonoBehaviour {
 		}
 	}
 	
-	void Movement2()
-	{
-		float hValue = Input.GetAxis ("Horizontal");
-		
-		rigidbody2D.velocity = new Vector2 (hValue * playerSpeed, rigidbody2D.velocity.y);
-		
-		
+	void Movement2(){
+		if (grounded) {
+						float hValue = Input.GetAxis ("Horizontal");
+						rigidbody2D.velocity = new Vector2 (hValue * playerSpeed, rigidbody2D.velocity.y);
+				}
 	}
 }
