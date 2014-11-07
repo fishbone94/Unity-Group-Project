@@ -14,10 +14,11 @@
 		private const int STARTING_NUMBER_MATCHES = 10;
 		private const int MAXIMUM_BRIGHTNESS = 1000;
 		// Rate of match brightness decrease per frame
-		private const int MATCH_BRIGHTNESS_DECREASE_RATE = 5;
+		private const int MATCH_BRIGHTNESS_DECREASE_RATE = 1;
 
 		private MatchObject(){
 			NumberOfMatches = STARTING_NUMBER_MATCHES;
+			MatchBrightness = MAXIMUM_BRIGHTNESS;
 		}
 
 		public bool IsLit {
@@ -32,6 +33,12 @@
 		public int MatchBrightness {
 				get;
 				set;
+		}
+
+		public int MatchBrightnessPercentage {
+				get {
+						return (int)(((double)MatchBrightness / (double)MAXIMUM_BRIGHTNESS) * 100);
+				}
 		}
 
 		public int NumberOfMatches {
@@ -50,8 +57,8 @@
 		public void DecreaseMatchBrightness ()
 		{
 				MatchBrightness -= MATCH_BRIGHTNESS_DECREASE_RATE;
-				if (MatchBrightness <= 0)
-						NumberOfMatches--;
+				if (MatchBrightness < 0)
+					MatchBrightness = 0;
 		}
 
 		public bool LightNewMatch ()

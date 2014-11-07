@@ -18,5 +18,10 @@ public class Matches : MonoBehaviour
 				if (_matchSingleton.IsLit) {
 						_matchSingleton.DecreaseMatchBrightness ();
 				}
+				if (Input.GetButtonDown ("Light")) {
+					_matchSingleton.LightNewMatch();
+				}
+
+				GameObject.Find("Matches Count").guiText.text = string.Format("Matches: {0}", _matchSingleton.NumberOfMatches);
 		}
 }
