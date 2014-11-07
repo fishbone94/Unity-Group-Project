@@ -5,6 +5,7 @@ public class Movement : MonoBehaviour {
 	public float jumpPower = 150;
 	private bool hasJumped = false;
 	private int MAX_PLAYER_SPEED = 5;
+	private float MATCH_LIGHT_INTENSITY_MAX = 8f;
 	private int playerSpeed{
 		get;
 		set;
@@ -16,7 +17,7 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		playerSpeed = MAX_PLAYER_SPEED * MatchObject.MatchSingleton.MatchBrightnessPercentage;
-
+		light.intensity = (MATCH_LIGHT_INTENSITY_MAX * (float) MatchObject.MatchSingleton.MatchBrightnessPercentage)/100;
 		Movement2 ();
 		// Do something
 		if(!grounded && rigidbody2D.velocity.y == 0) {
