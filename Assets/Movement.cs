@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour {
 	private bool hasJumped = false;
 	private int MAX_PLAYER_SPEED = 5;
 	private float MATCH_LIGHT_INTENSITY_MAX = 8f;
+	private float someScale = 1;
 	private int playerSpeed{
 		get;
 		set;
@@ -13,6 +14,7 @@ public class Movement : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		someScale = transform.localScale.x;
 	}
 	// Update is called once per frame
 	void Update () {
@@ -37,10 +39,20 @@ public class Movement : MonoBehaviour {
 	
 	void Movement2(){
 		if (grounded) {
-						float hValue = Input.GetAxis ("Horizontal");
-//						float floatPlayerSpeed = (float) playerSpeed;
-
-						rigidbody2D.velocity = new Vector2 ((hValue * playerSpeed)/100, rigidbody2D.velocity.y);
+			Flip();
+			float hValue = Input.GetAxis ("Horizontal");
+//			float floatPlayerSpeed = (float) playerSpeed;
+			rigidbody2D.velocity = new Vector2 ((hValue * playerSpeed)/100, rigidbody2D.velocity.y);
 				}
 	}
+	void Flip(){
+				if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+						transform.localScale = new Vector2 (-someScale, transform.localScale.y);
+				} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+						transform.localScale = new Vector2 (someScale, transform.localScale.y);
+				} else {
+				}
+		}
+
+
 }
