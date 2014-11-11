@@ -6,8 +6,9 @@ public class Movement : MonoBehaviour
 		public bool grounded = true;
 		public float jumpPower = 150;
 		private bool hasJumped = false;
+		public int speedDecreaseRate = 1;
 		private int MIN_PLAYER_SPEED = 200;
-		private int MAX_PLAYER_SPEED = 700;
+		private int MAX_PLAYER_SPEED = 500;
 		private float MATCH_LIGHT_INTENSITY_MAX = 8f;
 		public float someScale;
 
@@ -73,11 +74,10 @@ public class Movement : MonoBehaviour
 		void UpdatePlayerSpeed ()
 		{
 				if (MatchObject.MatchSingleton.MatchBrightness > 0) {
-						playerSpeed = MAX_PLAYER_SPEED - MIN_PLAYER_SPEED;	
+						playerSpeed = MAX_PLAYER_SPEED;	
 				} else if (MatchObject.MatchSingleton.MatchBrightness == 0 && playerSpeed > MIN_PLAYER_SPEED) {
-						playerSpeed = (int)(playerSpeed - 1);
-				} else
-						playerSpeed = MIN_PLAYER_SPEED;
+						playerSpeed = (int)(playerSpeed - speedDecreaseRate);
+				}
 		}
 	
 }
