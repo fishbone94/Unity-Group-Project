@@ -6,12 +6,12 @@ public class HareRunAway : MonoBehaviour {
 	private int hareSpeed = 25;
 	private float direction;
 
-	Movement script;
+	Player script;
 
 	// Use this for initialization
 	void Start () {
 		GameObject player = GameObject.Find("Player");
-		script = player.GetComponent<Movement> ();
+		script = player.GetComponent<Player> ();
 	}
 	
 	// Update is called once per frame
