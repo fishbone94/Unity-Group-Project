@@ -7,6 +7,9 @@ public class Player : MonoBehaviour{
 	public float jumpPower = 150;
 	public float someScale;
 	public int speedDecreaseRate = 1;
+	public float xPos;
+	public float yPos;
+	public float zPos;
 	
 	private int MIN_PLAYER_SPEED = 200;
 	private int MAX_PLAYER_SPEED = 500;
@@ -19,10 +22,18 @@ public class Player : MonoBehaviour{
 	
 	// Use this for initialization
 	void Start (){
-		
+
 		someScale = transform.localScale.x;
 		
 	}
+
+	void OnCollisionEnter2D(Collision2D coll) {
+		if (coll.gameObject.name == "Ground" ) {
+			grounded = true;
+		}
+		
+	}
+
 	// Update is called once per frame
 	void Update (){
 		
@@ -30,14 +41,10 @@ public class Player : MonoBehaviour{
 		Flip ();
 		light.intensity = (MATCH_LIGHT_INTENSITY_MAX * (float)MatchObject.MatchSingleton.MatchBrightnessPercentage) / 100;
 		// Do something
-		if (!grounded && rigidbody2D.velocity.y == 0) {
-			grounded = true;
-		}
+
 		if (Input.GetButtonDown ("Jump") && grounded == true) {
 			hasJumped = true;
 		}
-		
-		
 	}
 	
 	void FixedUpdate (){
@@ -79,5 +86,5 @@ public class Player : MonoBehaviour{
 			playerSpeed = (int)(playerSpeed - speedDecreaseRate);
 		}
 	}
-	
 }
+	
