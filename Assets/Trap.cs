@@ -12,9 +12,4 @@ public class Trap : MonoBehaviour {
 	void Update () {
 	
 	}
-	void OnCollisionEnter2D(Collision2D col){
-		if(col.gameObject.tag == "Player"){
-			Destroy (col.gameObject);
-		}
-	}
 }

@@ -7,9 +7,7 @@ public class Player : MonoBehaviour{
 	public float jumpPower = 150;
 	public float someScale;
 	public int speedDecreaseRate = 1;
-	public float xPos;
-	public float yPos;
-	public float zPos;
+	public Vector3 Position ;
 	
 	private int MIN_PLAYER_SPEED = 200;
 	private int MAX_PLAYER_SPEED = 500;
@@ -19,24 +17,21 @@ public class Player : MonoBehaviour{
 		get;
 		set;
 	}
+
+	Checkpoint script;
 	
 	// Use this for initialization
 	void Start (){
 
 		someScale = transform.localScale.x;
-		
-	}
-
-	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.name == "Ground" ) {
-			grounded = true;
+		GameObject Checkpoint = GameObject.Find("Checkpoint");
+		script = Checkpoint.GetComponent<Checkpoint> ();
 		}
-		
-	}
 
 	// Update is called once per frame
 	void Update (){
-		
+
+		Position = script.Pos;
 		UpdatePlayerSpeed ();
 		Flip ();
 		light.intensity = (MATCH_LIGHT_INTENSITY_MAX * (float)MatchObject.MatchSingleton.MatchBrightnessPercentage) / 100;
@@ -48,7 +43,7 @@ public class Player : MonoBehaviour{
 	}
 	
 	void FixedUpdate (){
-		
+
 		Movement ();
 		if (hasJumped) {
 			rigidbody2D.AddForce (transform.up * jumpPower);
@@ -86,5 +81,21 @@ public class Player : MonoBehaviour{
 			playerSpeed = (int)(playerSpeed - speedDecreaseRate);
 		}
 	}
+
+	void OnCollisionEnter2D(Collision2D coll) {
+
+				if (coll.gameObject.name == "Ground") {
+						grounded = true;
+				} else if (coll.gameObject.name == "Trap") {
+						Respawn ();
+				} else {
+				}
+	}
+
+	void Respawn(){
+
+		transform.localScale = new Vector2 (1, transform.localScale.y);
+		someScale = 1;
+		gameObject.transform.position = Position;
+	}
 }
-	
