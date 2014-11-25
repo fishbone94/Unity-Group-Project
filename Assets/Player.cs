@@ -88,9 +88,11 @@ public class Player : MonoBehaviour{
 						grounded = true;
 				} else if (coll.gameObject.name == "Trap") {
 						Respawn ();
+				} else if (coll.gameObject.name == "Icicle") {
+						Respawn ();
 				} else {
 				}
-	}
+		}
 
 	void Respawn(){
 
